@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.jianshu.com/p/ed0d6b96fd14 -->
+<html><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+
+  <!-- Start of Baidu Transcode -->
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="MobileOptimized" content="width">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="mobile-agent" content="format=html5;url=http://www.jianshu.com/p/ed0d6b96fd14">
+  <!-- End of Baidu Transcode -->
+
+    <meta name="description" content="前言 XML现在已经成为一种通用的数据交换格式,它的平台无关性,语言无关性,系统无关性,给数据集成与交互带来了极大的方便。对于XML本身的语法知识与技术细节,需要阅读相关的技术文献,这里面包括的内容有DOM(Document Object Model)、DTD(Document Type Definition)、SAX(Simple API for XML)、XSD(Xml Schema D...">
+
+  <meta name="360-site-verification" content="604a14b53c6b871206001285921e81d8">
+  <meta property="wb:webmaster" content="294ec9de89e7fadb">
+  <meta property="qc:admins" content="104102651453316562112116375">
+  <meta property="qc:admins" content="11635613706305617">
+  <meta property="qc:admins" content="1163561616621163056375">
+  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4">
+  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI">
+  <meta http-equiv="mobile-agent" content="format=html5; url=http://www.jianshu.com/p/ed0d6b96fd14">
+
+  <!-- Apple -->
+  <meta name="apple-mobile-web-app-title" content="简书">
+
+    <!--  Meta for Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=888237539, app-argument=jianshu://notes/10766799">
+  <!-- End -->
+
+  <!--  Meta for Twitter Card -->
+  <meta content="summary" property="twitter:card">
+  <meta content="@jianshucom" property="twitter:site">
+  <meta content="详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java）" property="twitter:title">
+  <meta content="前言 XML现在已经成为一种通用的数据交换格式,它的平台无关性,语言无关性,系统无关性,给数据集成与交互带来了极大的方便。对于XML本身的语法知识与技术细节,需要阅读相关的技术文献,这里面包括的内容有DOM(Document Object Model)、DTD(Document Type Definition)、SAX(Simple API for XML)、XSD(Xml Schema Definition)、XSLT(Extensible Stylesheet Language Transformations)，具体可参阅w3c官方网站文档获取更多信息。XML在不同的语言里解析方式都..." property="twitter:description">
+  <meta content="http://www.jianshu.com/p/ed0d6b96fd14" property="twitter:url">
+  <!-- End -->
+
+  <!--  Meta for OpenGraph -->
+  <meta property="fb:app_id" content="865829053512461">
+  <meta property="og:site_name" content="简书">
+  <meta property="og:title" content="详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java）">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://www.jianshu.com/p/ed0d6b96fd14">
+  <meta property="og:description" content="前言 XML现在已经成为一种通用的数据交换格式,它的平台无关性,语言无关性,系统无关性,给数据集成与交互带来了极大的方便。对于XML本身的语法知识与技术细节,需要阅读相关的技术文献,这里面包括的...">
+  <!-- End -->
+
+  <!--  Meta for Facebook Applinks -->
+  <meta property="al:ios:url" content="jianshu://notes/10766799">
+  <meta property="al:ios:app_store_id" content="888237539">
+  <meta property="al:ios:app_name" content="简书">
+
+  <meta property="al:android:url" content="jianshu://notes/10766799">
+  <meta property="al:android:package" content="com.jianshu.haruki">
+  <meta property="al:android:app_name" content="简书">
+  <!-- End -->
+
+
+    <title>详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java） - 简书</title>
+
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="yBkzn4jXrMrEy/lWFe8Sn9XLmGsb/RAD2jC5Jx3DSI6tfmeVCc2g3XwhCpQCQquHF+gWoyiVOAVfN6zhy+yA7Q==">
+
+  <link rel="stylesheet" media="all" href="./详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java） - 简书_files/web-e6906923176bef6cfd35.css">
+  
+  <link rel="stylesheet" media="all" href="./详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java） - 简书_files/entry-e6906923176bef6cfd35.css">
+
+  <link href="http://cdn2.jianshu.io/assets/favicons/favicon-783beb88ed621ceab614de960376ac0c.ico" rel="icon">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/57-47624b2e2161e8eb144462c85db0a5ff.png" sizes="57x57">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/72-c00cde7cf98fc49e50cbb3ee1dcd5804.png" sizes="72x72">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/76-e8af0bdeaf1ba31e303b1fde8b5e66c4.png" sizes="76x76">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/114-f4c78569bbf1977e8382a5fd90c9237a.png" sizes="114x114">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/120-cf10c3711dba269522743729efe66bbc.png" sizes="120x120">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/152-7bd60457b5f3ecbf1343f0e6241be4f8.png" sizes="152x152">
+<link rel="stylesheet" href="blob:http://www.jianshu.com/8aae6fe1-1825-4f32-87c4-a8d8894687a5"><link rel="stylesheet" href="blob:http://www.jianshu.com/0855dd64-9c6f-467a-9f4a-0462dea493a6"><link rel="stylesheet" href="blob:http://www.jianshu.com/ea9dd5a7-e5ee-4961-8de9-2c8684ec0684"></head>
+
+  <body lang="zh-CN" class="reader-black-font">
+    <!-- 全局顶部导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="width-limit">
+    <!-- 左上方 Logo -->
+    <a class="logo" href="http://www.jianshu.com/"><img src="./详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java） - 简书_files/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo"></a>
+
+    <!-- 右上角 -->
+      <!-- 未登录显示登录/注册/写文章 -->
+      <a class="btn write-btn" target="_blank" href="http://www.jianshu.com/writer#/">
+        <i class="iconfont ic-write"></i>写文章
+</a>      <a class="btn sign-up" href="http://www.jianshu.com/sign_up">注册</a>
+      <a class="btn log-in" href="http://www.jianshu.com/sign_in">登录</a>
+
+    <!-- 如果用户登录，显示下拉菜单 -->
+
+    <div class="style-mode"><a class="style-mode-btn"><i class="iconfont ic-navigation-mode"></i></a> <div class="popover-modal" style="left: 0px; display: none;"><div class="meta"><i class="iconfont ic-navigation-night"></i><span>夜间模式</span></div> <div class="switch day-night-group"><a class="switch-btn">开</a> <a class="switch-btn active">关</a></div> <hr> <div class="switch font-family-group"><a class="switch-btn font-song">宋体</a> <a class="switch-btn font-hei active">黑体</a></div> <div class="switch"><a class="switch-btn active">简</a> <a class="switch-btn">繁</a></div></div></div>
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="nav navbar-nav">
+            <li class="">
+              <a href="http://www.jianshu.com/">
+                <span class="menu-text">首页</span><i class="iconfont ic-navigation-discover menu-icon"></i>
+</a>            </li>
+            <li class="">
+              <a class="app-download-btn" href="http://www.jianshu.com/apps"><span class="menu-text">下载App</span><i class="iconfont ic-navigation-download menu-icon"></i></a>
+            </li>
+          <li class="search">
+            <form target="_blank" action="http://www.jianshu.com/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+              <input type="text" name="q" id="q" value="" placeholder="搜索" class="search-input">
+              <a class="search-btn" href="javascript:void(null)"><i class="iconfont ic-search"></i></a>
+              <!-- <div id="navbar-trending-search"></div> -->
+</form>          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+    
+<div class="note">
+  <div class="post">
+    <div class="article">
+        <h1 class="title">详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java）</h1>
+
+        <!-- 作者区域 -->
+        <div class="author">
+          <a class="avatar" href="http://www.jianshu.com/u/ad3321aa38f1">
+            <img src="./详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java） - 简书_files/15451a7a86cc.jpg" alt="144">
+</a>          <div class="info">
+            <span class="tag">作者</span>
+            <span class="name"><a href="http://www.jianshu.com/u/ad3321aa38f1">活这么大就没饱过</a></span>
+            <!-- 关注用户按钮 -->
+            <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+            <!-- 文章数据信息 -->
+            <div class="meta">
+              <!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
+                <span class="publish-time">2017.03.30 10:53</span>
+              <span class="wordage">字数 883</span>
+            <span class="views-count">阅读 313</span><span class="comments-count">评论 0</span><span class="likes-count">喜欢 1</span></div>
+          </div>
+          <!-- 如果是当前作者，加入编辑按钮 -->
+        </div>
+        <!-- -->
+
+        <!-- 文章内容 -->
+        <div data-note-content="" class="show-content">
+          <h3>前言</h3>
+<p>XML现在已经成为一种通用的数据交换格式,它的平台无关性,语言无关性,系统无关性,给数据集成与交互带来了极大的方便。对于XML本身的语法知识与技术细节,需要阅读相关的技术文献,这里面包括的内容有<strong>DOM(Document Object Model)</strong>、<strong>DTD(Document Type Definition)</strong>、<strong>SAX(Simple API for XML)</strong>、<strong>XSD(Xml Schema Definition)</strong>、<strong>XSLT(Extensible Stylesheet Language Transformations)</strong>，具体可参阅<a href="https://www.w3.org/" target="_blank">w3c官方网站</a>文档获取更多信息。XML在不同的语言里解析方式都是一样的,只不过实现的语法不同而已。基本的解析方式有两种,一种叫<strong>SAX</strong>，另一种叫<strong>DOM</strong>。</p>
+<h3>DOM</h3>
+<p>DOM生成和解析XML文档为 XML 文档的已解析版本定义了一组接口。解析器读入整个文档，然后构建一个驻留内存的树结构，然后代码就可以使用 DOM 接口来操作这个树结构。优点：整个文档树在内存中，便于操作；支持删除、修改、重新排列等多种功能；缺点：将整个文档调入内存（包括无用的节点），浪费时间和空间；使用场合：一旦解析了文档还需多次访问这些数据；硬件资源充足（内存、CPU）。</p>
+<pre class="hljs dart"><code class="dart"><span class="hljs-comment"><span class="markdown">/**
+ * DOM生成与解析XML文档
+ */</span></span>
+public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DomDemo</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">XmlDocument</span> </span>{
+    private Document <span class="hljs-built_in">document</span>;
+    private <span class="hljs-built_in">String</span> fileName;
+
+    public <span class="hljs-keyword">void</span> init() {
+        <span class="hljs-keyword">try</span> {
+            DocumentBuilderFactory <span class="hljs-keyword">factory</span> = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = <span class="hljs-keyword">factory</span>.newDocumentBuilder();
+            <span class="hljs-keyword">this</span>.<span class="hljs-built_in">document</span> = builder.newDocument();
+        } <span class="hljs-keyword">catch</span> (ParserConfigurationException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public <span class="hljs-keyword">void</span> createXml(<span class="hljs-built_in">String</span> fileName) {
+        <span class="hljs-built_in">Element</span> root = <span class="hljs-keyword">this</span>.<span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"employees"</span>);
+        <span class="hljs-keyword">this</span>.<span class="hljs-built_in">document</span>.appendChild(root);
+        <span class="hljs-built_in">Element</span> employee = <span class="hljs-keyword">this</span>.<span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"employee"</span>);
+        <span class="hljs-built_in">Element</span> name = <span class="hljs-keyword">this</span>.<span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"name"</span>);
+        name.appendChild(<span class="hljs-keyword">this</span>.<span class="hljs-built_in">document</span>.createTextNode(<span class="hljs-string">"活这么大就没饱过"</span>));
+        employee.appendChild(name);
+        <span class="hljs-built_in">Element</span> sex = <span class="hljs-keyword">this</span>.<span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"sex"</span>);
+        sex.appendChild(<span class="hljs-keyword">this</span>.<span class="hljs-built_in">document</span>.createTextNode(<span class="hljs-string">"m"</span>));
+        employee.appendChild(sex);
+        <span class="hljs-built_in">Element</span> age = <span class="hljs-keyword">this</span>.<span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"age"</span>);
+        age.appendChild(<span class="hljs-keyword">this</span>.<span class="hljs-built_in">document</span>.createTextNode(<span class="hljs-string">"24"</span>));
+        employee.appendChild(age);
+        root.appendChild(employee);
+        TransformerFactory tf = TransformerFactory.newInstance();
+        <span class="hljs-keyword">try</span> {
+            Transformer transformer = tf.newTransformer();
+            DOMSource source = <span class="hljs-keyword">new</span> DOMSource(<span class="hljs-built_in">document</span>);
+            transformer.setOutputProperty(OutputKeys.ENCODING, <span class="hljs-string">"gb2312"</span>);
+            transformer.setOutputProperty(OutputKeys.INDENT, <span class="hljs-string">"yes"</span>);
+            PrintWriter pw = <span class="hljs-keyword">new</span> PrintWriter(<span class="hljs-keyword">new</span> FileOutputStream(fileName));
+            StreamResult result = <span class="hljs-keyword">new</span> StreamResult(pw);
+            transformer.transform(source, result);
+            System.out.println(<span class="hljs-string">"生成XML文件成功!"</span>);
+        } <span class="hljs-keyword">catch</span> (TransformerConfigurationException e) {
+            System.out.println(e.getMessage());
+        } <span class="hljs-keyword">catch</span> (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        } <span class="hljs-keyword">catch</span> (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } <span class="hljs-keyword">catch</span> (TransformerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public <span class="hljs-keyword">void</span> parserXml(<span class="hljs-built_in">String</span> fileName) {
+        <span class="hljs-keyword">try</span> {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document <span class="hljs-built_in">document</span> = db.parse(fileName);
+            NodeList employees = <span class="hljs-built_in">document</span>.getChildNodes();
+            <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; employees.getLength(); i++) {
+                Node employee = employees.item(i);
+                NodeList employeeInfo = employee.getChildNodes();
+                <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> j = <span class="hljs-number">0</span>; j &lt; employeeInfo.getLength(); j++) {
+                    Node node = employeeInfo.item(j);
+                    NodeList employeeMeta = node.getChildNodes();
+                    <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> k = <span class="hljs-number">0</span>; k &lt; employeeMeta.getLength(); k++) {
+                        System.out.println(employeeMeta.item(k).getNodeName() + <span class="hljs-string">":"</span> + employeeMeta.item(k).getTextContent());
+                    }
+                }
+            }
+            System.out.println(<span class="hljs-string">"解析完毕"</span>);
+        } <span class="hljs-keyword">catch</span> (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } <span class="hljs-keyword">catch</span> (ParserConfigurationException e) {
+            System.out.println(e.getMessage());
+        } <span class="hljs-keyword">catch</span> (SAXException e) {
+            System.out.println(e.getMessage());
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}</code></pre>
+<h3>SAX</h3>
+<p>SAX生成和解析XML文档为解决DOM的问题，出现了SAX。SAX ，事件驱动。当解析器发现元素开始、元素结束、文本、文档的开始或结束等时，发送事件，程序员编写响应这些事件的代码，保存数据。优点：不用事先调入整个文档，占用资源少；SAX解析器代码比DOM解析器代码小，适于Applet，下载。缺点：不是持久的；事件过后，若没保存数据，那么数据就丢了；无状态性；从事件中只能得到文本，但不知该文本属于哪个元素；使用场合：Applet;只需XML文档的少量内容，很少回头访问；机器内存少。</p>
+<pre class="hljs cs"><code class="cs"><span class="hljs-comment">/**
+ * SAX文档解析
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SaxDemo</span> <span class="hljs-title">implements</span> <span class="hljs-title">XmlDocument</span> {
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createXml</span>(<span class="hljs-params">String fileName</span>) </span>{
+        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">"&lt;&lt;"</span> + filename + <span class="hljs-string">"&gt;&gt;"</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">parserXml</span>(<span class="hljs-params">String fileName</span>) </span>{
+        SAXParserFactory saxfac = SAXParserFactory.newInstance();
+        <span class="hljs-keyword">try</span> {
+            SAXParser saxparser = saxfac.newSAXParser();
+            InputStream <span class="hljs-keyword">is</span> = <span class="hljs-keyword">new</span> FileInputStream(fileName);
+            saxparser.parse(<span class="hljs-keyword">is</span>, <span class="hljs-keyword">new</span> MySAXHandler());
+        } <span class="hljs-keyword">catch</span> (ParserConfigurationException e) {
+            e.printStackTrace();
+        } <span class="hljs-keyword">catch</span> (SAXException e) {
+            e.printStackTrace();
+        } <span class="hljs-keyword">catch</span> (FileNotFoundException e) {
+            e.printStackTrace();
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title">MySAXHandler</span> <span class="hljs-title">extends</span> <span class="hljs-title">DefaultHandler</span> {
+    boolean hasAttribute = <span class="hljs-literal">false</span>;
+    Attributes attributes = <span class="hljs-literal">null</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">startDocument</span>(<span class="hljs-params"></span>) throws SAXException </span>{
+        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">"文档开始打印了"</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">endDocument</span>(<span class="hljs-params"></span>) throws SAXException </span>{
+        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">"文档打印结束了"</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">startElement</span>(<span class="hljs-params">String uri, String localName, String qName, Attributes attributes</span>) throws SAXException </span>{
+        <span class="hljs-keyword">if</span> (qName.<span class="hljs-keyword">equals</span>(<span class="hljs-string">"employees"</span>)) {
+            <span class="hljs-keyword">return</span>;
+        }
+        <span class="hljs-keyword">if</span> (qName.<span class="hljs-keyword">equals</span>(<span class="hljs-string">"employee"</span>)) {
+            System.<span class="hljs-keyword">out</span>.println(qName);
+        }
+        <span class="hljs-keyword">if</span> (attributes.getLength() &gt; <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">this</span>.attributes = attributes;
+            <span class="hljs-keyword">this</span>.hasAttribute = <span class="hljs-literal">true</span>;
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">endElement</span>(<span class="hljs-params">String uri, String localName, String qName</span>) throws SAXException </span>{
+        <span class="hljs-keyword">if</span> (hasAttribute &amp;&amp; (attributes != <span class="hljs-literal">null</span>)) {
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; attributes.getLength(); i++) {
+                System.<span class="hljs-keyword">out</span>.println(attributes.getQName(<span class="hljs-number">0</span>) + attributes.getValue(<span class="hljs-number">0</span>));
+            }
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">characters</span>(<span class="hljs-params"><span class="hljs-keyword">char</span>[] ch, <span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> length</span>) throws SAXException </span>{
+        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-keyword">new</span> String(ch, start, length));
+    }
+}</code></pre>
+<h3>DOM4J</h3>
+<p>DOM4J生成和解析XML文档DOM4J 是一个非常非常优秀的Java XML API，具有性能优异、功能强大和极端易用使用的特点，同时它也是一个开放源代码的软件。如今你可以看到越来越多的 Java 软件都在使用 DOM4J 来读写 XML，特别值得一提的是连 Sun 的 JAXM 也在用 DOM4J。</p>
+<pre class="hljs dart"><code class="dart"><span class="hljs-comment"><span class="markdown">/**
+ * Dom4j 生成XML文档与解析XML文档
+ */</span></span>
+public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dom4jDemo</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">XmlDocument</span> </span>{
+    public <span class="hljs-keyword">void</span> createXml(<span class="hljs-built_in">String</span> fileName) {
+        Document <span class="hljs-built_in">document</span> = DocumentHelper.createDocument();
+        <span class="hljs-built_in">Element</span> employees = <span class="hljs-built_in">document</span>.addElement(<span class="hljs-string">"employees"</span>);
+        <span class="hljs-built_in">Element</span> employee = employees.addElement(<span class="hljs-string">"employee"</span>);
+        <span class="hljs-built_in">Element</span> name = employee.addElement(<span class="hljs-string">"name"</span>);
+        name.setText(<span class="hljs-string">"活这么大就没饱过"</span>);
+        <span class="hljs-built_in">Element</span> sex = employee.addElement(<span class="hljs-string">"sex"</span>);
+        sex.setText(<span class="hljs-string">"m"</span>);
+        <span class="hljs-built_in">Element</span> age = employee.addElement(<span class="hljs-string">"age"</span>);
+        age.setText(<span class="hljs-string">"24"</span>);
+        <span class="hljs-keyword">try</span> {
+            Writer fileWriter = <span class="hljs-keyword">new</span> FileWriter(fileName);
+            XMLWriter xmlWriter = <span class="hljs-keyword">new</span> XMLWriter(fileWriter);
+            xmlWriter.write(<span class="hljs-built_in">document</span>);
+            xmlWriter.close();
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public <span class="hljs-keyword">void</span> parserXml(<span class="hljs-built_in">String</span> fileName) {
+        File inputXml = <span class="hljs-keyword">new</span> File(fileName);
+        SAXReader saxReader = <span class="hljs-keyword">new</span> SAXReader();
+        <span class="hljs-keyword">try</span> {
+            Document <span class="hljs-built_in">document</span> = saxReader.read(inputXml);
+            <span class="hljs-built_in">Element</span> employees = <span class="hljs-built_in">document</span>.getRootElement();
+            <span class="hljs-keyword">for</span> (<span class="hljs-built_in">Iterator</span> i = employees.elementIterator(); i.hasNext(); ) {
+                <span class="hljs-built_in">Element</span> employee = (<span class="hljs-built_in">Element</span>) i.next();
+                <span class="hljs-keyword">for</span> (<span class="hljs-built_in">Iterator</span> j = employee.elementIterator(); j.hasNext(); ) {
+                    <span class="hljs-built_in">Element</span> node = (<span class="hljs-built_in">Element</span>) j.next();
+                    System.out.println(node.getName() + <span class="hljs-string">":"</span> + node.getText());
+                }
+            }
+        } <span class="hljs-keyword">catch</span> (DocumentException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println(<span class="hljs-string">"dom4j parserXml"</span>);
+    }
+}</code></pre>
+<h3>JDOM</h3>
+<p>JDOM生成和解析XML  为减少DOM、SAX的编码量，出现了JDOM；优点：20-80原则，极大减少了代码量。使用场合：要实现的功能简单，如解析、创建等，但在底层，JDOM还是使用SAX（最常用）、DOM、Xanan文档。 </p>
+<pre class="hljs dart"><code class="dart"><span class="hljs-comment"><span class="markdown">/**
+ <span class="hljs-bullet">* JDOM 生成与解析XML文档  *</span>
+ */</span></span>
+public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JDomDemo</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">XmlDocument</span> </span>{
+    public <span class="hljs-keyword">void</span> createXml(<span class="hljs-built_in">String</span> fileName) {
+        Document <span class="hljs-built_in">document</span>;
+        <span class="hljs-built_in">Element</span> root;
+        root = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Element</span>(<span class="hljs-string">"employees"</span>);
+        <span class="hljs-built_in">document</span> = <span class="hljs-keyword">new</span> Document(root);
+        <span class="hljs-built_in">Element</span> employee = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Element</span>(<span class="hljs-string">"employee"</span>);
+        root.addContent(employee);
+        <span class="hljs-built_in">Element</span> name = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Element</span>(<span class="hljs-string">"name"</span>);
+        name.setText(<span class="hljs-string">"活这么大就没饱过"</span>);
+        employee.addContent(name);
+        <span class="hljs-built_in">Element</span> sex = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Element</span>(<span class="hljs-string">"sex"</span>);
+        sex.setText(<span class="hljs-string">"m"</span>);
+        employee.addContent(sex);
+        <span class="hljs-built_in">Element</span> age = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Element</span>(<span class="hljs-string">"age"</span>);
+        age.setText(<span class="hljs-string">"24"</span>);
+        employee.addContent(age);
+        XMLOutputter XMLOut = <span class="hljs-keyword">new</span> XMLOutputter();
+        <span class="hljs-keyword">try</span> {
+            XMLOut.output(<span class="hljs-built_in">document</span>, <span class="hljs-keyword">new</span> FileOutputStream(fileName));
+        } <span class="hljs-keyword">catch</span> (FileNotFoundException e) {
+            e.printStackTrace();
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public <span class="hljs-keyword">void</span> parserXml(<span class="hljs-built_in">String</span> fileName) {
+        SAXBuilder builder = <span class="hljs-keyword">new</span> SAXBuilder(<span class="hljs-keyword">false</span>);
+        <span class="hljs-keyword">try</span> {
+            Document <span class="hljs-built_in">document</span> = builder.build(fileName);
+            <span class="hljs-built_in">Element</span> employees = <span class="hljs-built_in">document</span>.getRootElement();
+            <span class="hljs-built_in">List</span> employeeList = employees.getChildren(<span class="hljs-string">"employee"</span>);
+            <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; <span class="hljs-built_in">Element</span> employee = (<span class="hljs-built_in">Element</span>) employeeList.<span class="hljs-keyword">get</span>(i);
+            <span class="hljs-built_in">List</span> employeeInfo = employee.getChildren();
+            <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> j = <span class="hljs-number">0</span>; System.out.println(((<span class="hljs-built_in">Element</span>) employeeInfo.<span class="hljs-keyword">get</span>(j)).getName() + <span class="hljs-string">":"</span> + ((<span class="hljs-built_in">Element</span>) employeeInfo.<span class="hljs-keyword">get</span>(j)).getValue());
+        } <span class="hljs-keyword">catch</span> (JDOMException e) {
+            e.printStackTrace();
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+<h3>总结</h3>
+<p>这篇博客介绍了 Java 语言编写的4种解析 XML 文件的工具代码，大家可以根据自己的业务需求选择具体的方案并进行自定义场景使用，就 XML 解析而言，我个人推荐选择 DOM4J 的形式，但是现在储存数据的格式种类繁多，而 XML 是我最不推荐的形式，推荐大家使用 JSON、YAML 等数据格式。</p>
+
+        </div>
+        <!--  -->
+
+        <div class="show-foot">
+          <a class="notebook" href="http://www.jianshu.com/nb/10551570">
+            <i class="iconfont ic-search-notebook"></i> <span>Java</span>
+</a>          <div class="copyright" data-toggle="tooltip" data-html="true" data-original-title="转载请联系作者获得授权，并标注“简书作者”。">
+            © 著作权归作者所有
+          </div>
+          <div class="modal-wrap" data-report-note="">
+            <a id="report-modal">举报文章</a>
+          </div>
+        </div>
+    </div>
+
+    <!-- 文章底部作者信息 -->
+      <div class="follow-detail">
+        <div class="info">
+          <a class="avatar" href="http://www.jianshu.com/u/ad3321aa38f1">
+            <img src="./详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java） - 简书_files/15451a7a86cc.jpg" alt="144">
+</a>          <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+          <a class="title" href="http://www.jianshu.com/u/ad3321aa38f1">活这么大就没饱过</a>
+        <p>写了 48931 字，被 41 人关注，获得了 62 个喜欢</p></div>
+          <div class="signature">只要坚持21天，这就是你接下来的习惯。</div>
+      </div>
+
+      <div class="support-author"><p>如果觉得我的文章对您有用，请随意赞赏。您的支持将鼓励我继续创作！</p> <div class="btn btn-pay">赞赏支持</div> <!----> <!----> <!----></div>
+
+    <div class="meta-bottom">
+      <div class="like"><div class="btn like-group"><div class="btn-like"><a href="http://www.jianshu.com/sign_in?utm_source=desktop&amp;utm_medium=not-signed-in-like-button"><i class="iconfont ic-like"></i>喜欢</a></div> <div class="modal-wrap"><a>1</a></div></div> <!----></div>
+      <div class="share-group">
+        <a class="share-circle" data-action="weixin-share" data-toggle="tooltip" data-original-title="分享到微信">
+          <i class="iconfont ic-wechat"></i>
+        </a>
+        <a class="share-circle" data-action="weibo-share" data-toggle="tooltip" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/10766799/weibo/image_2e500a79dc55.jpg&#39;, &#39;推荐 活这么大就没饱过 的文章《详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java）》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/ed0d6b96fd14?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));" data-original-title="分享到微博">
+          <i class="iconfont ic-weibo"></i>
+        </a>
+          <a class="share-circle" data-toggle="tooltip" href="http://cwb.assets.jianshu.io/notes/images/10766799/weibo/image_2e500a79dc55.jpg" target="_blank" data-original-title="下载长微博图片">
+            <i class="iconfont ic-picture"></i>
+          </a>
+        <a class="share-circle more-share" tabindex="0" data-toggle="popover" data-placement="top" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="
+          &lt;ul class=&quot;share-list&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/ed0d6b96fd14?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 活这么大就没饱过 的文章《详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java）》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-zone&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/ed0d6b96fd14?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 活这么大就没饱过 的文章《详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java）》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-twitter&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/ed0d6b96fd14?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-facebook&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/ed0d6b96fd14?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-google&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/ed0d6b96fd14?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java）&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-douban&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        " data-original-title="" title="">更多分享</a>
+      </div>
+    </div>
+    <div><div id="comment-list" class="comment-list"><div><form class="new-comment"><a class="avatar"><img src="./详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java） - 简书_files/avatar_default-78d4d1f68984cd6d4379508dd94b4210.png"></a> <div class="sign-container"><a href="http://www.jianshu.com/sign_in?utm_source=desktop&amp;utm_medium=not-signed-in-comment-form" class="btn btn-sign">登录</a> <span>后发表评论</span></div></form></div> <div id="normal-comment-list" class="normal-comment-list"><div><!----> <div><div class="top"><span>评论</span> <a class="close-btn" style="display: none;">关闭评论</a></div> <div class="no-comment"></div> <div class="text">
+            智慧如你，不想<a href="http://www.jianshu.com/sign_in?utm_source=desktop&amp;utm_medium=not-signed-in-nocomments-text">发表一点想法</a>咩~
+          </div></div> <!----> <div class="comments-placeholder" style="display: none;"><div class="author"><div class="avatar"></div> <div class="info"><div class="name"></div> <div class="meta"></div></div></div> <div class="text"></div> <div class="text animation-delay"></div> <div class="tool-group"><i class="iconfont ic-zan-active"></i><div class="zan"></div> <i class="iconfont ic-list-comments"></i><div class="zan"></div></div></div> </div></div> <!----> <div><!----></div></div></div>
+  </div>
+
+  <div class="side-tool"><ul><li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="回到顶部" style="display: none;"><a class="function-button"><i class="iconfont ic-backtop"></i></a></li> <!----> <!----> <li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="分享文章"><a tabindex="0" role="button" data-toggle="popover" data-placement="left" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="&lt;ul class=&#39;share-list&#39;&gt;
+                &lt;li&gt;&lt;a class=&quot;weixin-share&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-weixin&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到微信&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/10766799/weibo/image_2e500a79dc55.jpg&#39;, &#39;推荐 活这么大就没饱过 的文章《详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java）》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/ed0d6b96fd14?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-weibo&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到微博&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;http://cwb.assets.jianshu.io/notes/images/10766799/weibo/image_2e500a79dc55.jpg&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-picture&quot;&gt;&lt;/i&gt;&lt;span&gt;下载长微博图片&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/ed0d6b96fd14?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 活这么大就没饱过 的文章《详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java）》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-zone&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/ed0d6b96fd14?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 活这么大就没饱过 的文章《详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java）》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-twitter&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/ed0d6b96fd14?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-facebook&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/ed0d6b96fd14?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-google&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/ed0d6b96fd14?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java）&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-douban&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;" data-original-title="" title="" class="function-button"><i class="iconfont ic-share"></i></a> <!----></li></ul></div>
+</div>
+<div class="note-bottom">
+  <!---->
+  <div><div class="recommend-note"><div class="meta"><div class="title">
+        推荐阅读
+        <a target="_blank" href="http://www.jianshu.com/" class="more">
+           更多精彩内容<i class="iconfont ic-link"></i></a></div></div> <div class="list"><div class="note"><!----> <a target="_blank" href="http://www.jianshu.com/p/94d9713c4ef1?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">Spring Boot 手记：预告</a> <p class="description">前言 这篇博客的用意是提醒我，入门了 Spring Boot 就该写篇博客沉淀一下知识了！同时，在接触 Spring Boot 的过程中又碰到了阿里大神们开源的 Druid，被阿里大神们称为 Java 里最好的数据库连接池，在 Spring Boot 手记后进行 Druid 的博客撰写。 加油啊，不能放弃好习惯！</p> <a target="_blank" href="http://www.jianshu.com/u/ad3321aa38f1?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;http://upload.jianshu.io/users/upload_avatars/875437/15451a7a86cc.jpg&quot;);"></div> <span class="name">活这么大就没饱过</span></a></div><div class="note"><!----> <a target="_blank" href="http://www.jianshu.com/p/e9b7b10c15a7?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">Git 环境搭建、安装及 SourceTree 使用手册</a> <p class="description">1. Git 下载及安装 Git 官网 点击右侧的下载链接下载对应系统环境的 Git 安装文件（Mac 推荐使用 Homebrew 进行安装）。 Win 系统的详细安装教程 鉴于大家对于 Git 工具的不熟悉，本次教程主要以图形化工具（SourceTree）进行说明。 2. SourceTree 下载及安装 SourceTree 官网 点击 Banner 左侧下载对应系统环境的 SourceTree 安装文件。 安装SourceTree，首次打开 SourceTree 需要进行初始化配置以及登录、注册Atlassian通行证（必将这么优秀的免费程序，不可避免有些麻烦）。 3. 生成 Gi...</p> <a target="_blank" href="http://www.jianshu.com/u/ad3321aa38f1?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;http://upload.jianshu.io/users/upload_avatars/875437/15451a7a86cc.jpg&quot;);"></div> <span class="name">活这么大就没饱过</span></a></div><div class="note"><a target="_blank" href="http://www.jianshu.com/p/ee1fd4e95c6b?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="cover" style="background-image: url(&quot;//upload-images.jianshu.io/upload_images/5959857-6dc8d3033286ed9c.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240&quot;);"></a> <a target="_blank" href="http://www.jianshu.com/p/ee1fd4e95c6b?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">我如何复习39天就通过了国家司法考试？</a> <p class="description">温馨提示：这篇文章有点长——我原计划写成一本书的——但如果你想提高自己的学习效率、顺利通过任何考试，那么这篇文章绝对值得你慢慢读完。﻿﻿ 这是一篇从宏观上分享学习方法的文章，我本人及其他人的经历证明了这些方法是可行的。﻿﻿ 但愿你，从这里开始，走向无所不能。 为了对大家负责，我必须对标题进行说明﻿﻿ 从标题看，我用了“39天”这个给人感觉“司考成功有捷径”的数字，但这不是为了吸引眼球，而是客观事实，这个事实基于以下两个前提：﻿﻿ 1.我大学本科专业是法学，对于司法考试我有专业优势。我随便“裸考”，成绩都在240分以上。﻿﻿ 2.我从小到大学习成绩都挺好，在我研习了快速阅读、超级记忆和思维...</p> <a target="_blank" href="http://www.jianshu.com/u/499f682cb8a2?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;http://upload.jianshu.io/users/upload_avatars/5959857/dde2083f-4580-469d-afbd-2d124d930e28.jpg&quot;);"></div> <span class="name">少宏少宏</span></a></div><div class="note"><a target="_blank" href="http://www.jianshu.com/p/d65faeed2bd4?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="cover" style="background-image: url(&quot;//upload-images.jianshu.io/upload_images/4138043-eae06c1206fa34b2.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240&quot;);"></a> <a target="_blank" href="http://www.jianshu.com/p/d65faeed2bd4?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">你只是想睡我，我知道</a> <p class="description">文 | 时青言 背后突然传来的男音划破了空气中凝结的气喘吁吁声：“呦，妹子体力不错啊，姑娘家家的，还爬了这么久。” 我拄着拐杖回头报以善意一笑，一路上跟我和好友一同上山的，还有一拨汉子，听他们之间的聊天对话，推测出是公司组织的游玩，说话的正是其中一个瘦瘦高高的年轻男子：“你为嘛在头发上插根草？还蛮好看的。” 我一时语塞，随口一回：“喔，刚摘的，没地方放，就插头发上了。” 那男的又像“查户口本”一样问了一堆，我自然是警觉地胡乱嗯嗯啊啊一通…… 待男子走远，背后又传来好友噗嗤噗嗤的笑声，两脚变四脚往上爬的她不知在何时追赶上了。 “我发现一个事儿，你好像自带吸引屌丝体质。”好友一脸贼兮兮地贱笑...</p> <a target="_blank" href="http://www.jianshu.com/u/9787ddc08cad?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;http://upload.jianshu.io/users/upload_avatars/4138043/adcbfbf476d9.jpg&quot;);"></div> <span class="name">时青言</span></a></div><div class="note"><a target="_blank" href="http://www.jianshu.com/p/cb44e0b515e2?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="cover" style="background-image: url(&quot;//upload-images.jianshu.io/upload_images/1765115-dc44bb31c16f297d.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240&quot;);"></a> <a target="_blank" href="http://www.jianshu.com/p/cb44e0b515e2?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">值得一辈子时间投资的4件事</a> <p class="description">学习投资最重要的事情是什么？或者说最值得关注的事情是什么？ 我觉得是“是否具有持续的增值性”。 其实对于我们每一个人来说，我们每时每刻都在“做投资”-我们用自己的时间、精力、赚到的钱在自己的一切生活中做出了自己的“投资选择”。 有的人会愿意花费一个小时的时间以及精力投资在一本书籍上；有的人会愿意花费一个小时投资在自己的身体锻炼上；而有的人却会愿意花费一个小时的时间“投资”在游戏娱乐中去。 对于投资的理解，我们不应该再仅仅只是局限在“用钱购买可以增值的产品”，更为广义地来看，投资可以等同于选择，只是当我们提到投资的时候，我们内心的感觉应该是关注在更加正面的事情上，能够带给我们正能量的，能够...</p> <a target="_blank" href="http://www.jianshu.com/u/e9bef2559023?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;http://upload.jianshu.io/users/upload_avatars/1765115/37567c9b-976b-4ffc-929d-a3888509bbab.png&quot;);"></div> <span class="name">程子说</span></a></div></div></div> <div class="sign-and-download-bind"><a href="http://www.jianshu.com/sign_in?utm_source=desktop&amp;utm_medium=note-bottom-bind" class="btn"><div class="title"><i class="iconfont ic-user"></i>
+        登录/注册
+      </div> <div class="subtitle">
+        为你个性化推荐内容
+      </div></a> <a href="http://www.jianshu.com/apps/download?utm_source=desktop&amp;utm_medium=click-note-bottom-bind" class="btn btn-popover"><div class="title"><i class="iconfont ic-qrcode"></i>
+        下载简书App
+      </div> <div class="subtitle">
+        随时随地发现和创作内容
+      </div> <div class="qr-box"><div class="qrcode"></div> <div class="arrow"></div></div></a></div></div>
+</div>
+
+    <script src="./详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java） - 简书_files/push.js.下载"></script><script src="./详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java） - 简书_files/hm.js.下载"></script><script async="" src="./详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java） - 简书_files/analytics.js.下载"></script><script type="application/json" data-name="page-data">{"user_signed_in":false,"locale":"zh-CN","os":"windows","read_mode":"day","read_font":"font2","note_show":{"is_author":false,"is_following_author":false,"is_liked_note":false,"uuid":"e2ee01ab-5f5d-4d33-8a5f-38aa3eb643e6"},"note":{"id":10766799,"slug":"ed0d6b96fd14","user_id":875437,"notebook_id":10551570,"commentable":true,"likes_count":1,"views_count":313,"public_wordage":883,"comments_count":0,"total_rewards_count":0,"is_author":false,"author":{"nickname":"活这么大就没饱过","total_wordage":48931,"followers_count":41,"total_likes_count":62}}}</script>
+    
+    <script src="./详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java） - 简书_files/babel-polyfill-995905c28c94e6e30a6a.js.下载"></script>
+    <script src="./详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java） - 简书_files/web-base-e6906923176bef6cfd35.js.下载"></script>
+<script src="./详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java） - 简书_files/web-a9c071d484756e69f916.js.下载"></script>
+    
+    <script src="./详解Java解析XML的四种方法（推荐使用DOM4J，因为for Java） - 简书_files/entry-3325a1c78a3183e19608.js.下载"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35169517-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?0c0e9d9b1e7d617b3e6842e85b9fb068";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+  
+
+<!----><!----></body></html>

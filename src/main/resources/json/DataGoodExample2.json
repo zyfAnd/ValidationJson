@@ -1,0 +1,9 @@
+{
+  "id": 1,
+  "name": "A green door",
+  "checked": false,
+  "tags": [
+    "home",
+    "green"
+  ]
+}
