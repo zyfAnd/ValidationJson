@@ -67,3 +67,34 @@ public class Dom4jDemo implements XmlDocument {
             System.out.println("ff2 nullpoint");
         }
     }
+    
+    -------------------------------
+    
+    
+    
+    <select id="resideprovince" class="ps" tabindex="1" onchange="showdistrict('residecitybox', ['resideprovince', 'residecity', 'residedist', 'residecommunity'], 4, 1, 'reside')" name="resideprovince">
+<option value="">-省份-</option>
+<option value="北京市" did="1">北京市</option>
+<option value="天津市" did="2">天津市</option>
+<option value="河北省" did="3">河北省</option>
+<option value="山西省" did="4">山西省</option>
+<option value="内蒙古自治区" did="5">内蒙古自治区</option>
+<option value="辽宁省" did="6">辽宁省</option>
+<option value="吉林省" did="7">吉林省</option>
+<option value="黑龙江省" did="8">黑龙江省</option>
+
+
+-------------
+
+
+//用普通定位+click方式处理下拉框
+ dr.findElement(By.xpath("//select[@id='resideprovince']/option[@value='浙江省']")).click();
+//等待两秒，让页面刷新，显示出城市下拉框
+Thread.sleep(2000);    dr.findElement(By.xpath("//select[@id='residecity']/option[@value='杭州市']")).click();
+
+//用Select方式
+Select sProvince = new Select(dr.findElement(By.xpath("//select[@id='resideprovince']")));
+sProvince.selectByValue("浙江省");
+Thread.sleep(2000);
+Select sCity = new Select(dr.findElement(By.xpath("//select[@id='residecity']")));
+        sCity.selectByValue("杭州市");
