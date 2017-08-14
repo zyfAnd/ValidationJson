@@ -41,4 +41,29 @@ public class Dom4jDemo implements XmlDocument {
         System.out.println("dom4j parserXml");
     }
 }
+------------
+@Test(enabled = false)
+    public void ff2() {
+        System.setProperty(key, value);
+        driver = new ChromeDriver();
+        driver.get("file:///Users/user/Documents/qiaojiafei/seleniumtest.html");
+        driver.findElement(By.xpath("//*[@id='alert']/input")).click();
 
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        try {
+            Alert alert = wait.until(new ExpectedCondition<Alert>() {
+                @Override
+                public Alert apply(WebDriver driver) {
+                    try {
+                        return driver.switchTo().alert();
+                    } catch (NoAlertPresentException e) {
+                        return null;
+                    }
+                }
+            });
+            alert.accept();
+        } catch (NullPointerException e) {
+            /* Ignore */
+            System.out.println("ff2 nullpoint");
+        }
+    }
